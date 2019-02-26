@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMainBg"
+    android:orientation="vertical"
+    tools:context="com.xygj.app.jinrirong.activity.user.CommonNewsActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingTop="@dimen/status_bar_size">
+
+        <ImageView
+            android:layout_width="@dimen/toolbar_size"
+            android:layout_height="@dimen/toolbar_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="finishPage"
+            android:scaleType="center"
+            android:tint="@android:color/white"
+            android:src="@drawable/ic_back_black"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/toolbar_size"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="系统公告"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/lv_news"
+        android:layout_width="match_parent"
+        android:divider="#ddd"
+        android:dividerHeight="1px"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

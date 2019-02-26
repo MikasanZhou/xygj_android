@@ -1,0 +1,54 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--自定义 dialog 需要用到的主题-->
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="RadioGroupTab">
+        <!-- 这个属性是去掉button 默认样式-->
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/selector_tab_color</item>
+    </style>
+
+    <style name="SplitLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/colorSplitLine</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+
+    <style name="HorSplitLine">
+        <item name="android:layout_width">1px</item>
+        <item name="android:background">@color/colorSplitLine</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="PopupWindowAnimStyle">
+        <item name="android:windowEnterAnimation">@anim/slide_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_fade_out</item>
+    </style>
+
+    <style name="tabTextAppearance">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,242 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMainBg"
+    tools:context="com.xygj.app.jinrirong.fragment.home.HomePage1Fragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sr_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.xygj.app.jinrirong.widget.CustomScrollView
+            android:id="@+id/sv_custom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:id="@+id/cb_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_common_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="6dp"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="6dp"
+                    android:paddingStart="14dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@mipmap/home_news2" />
+
+                    <com.xygj.app.jinrirong.widget.LooperTextView
+                        android:id="@+id/ltv_common_news"
+                        android:layout_width="0dp"
+                        android:layout_height="34dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
+
+                <View style="@style/SplitLine" />
+
+                <View
+                    style="@style/SplitLine"
+                    android:layout_marginTop="10dp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_loan_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff" />
+
+                <View style="@style/SplitLine" />
+
+                <View
+                    style="@style/SplitLine"
+                    android:layout_marginTop="10dp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_credit_card_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff" />
+
+                <View style="@style/SplitLine" />
+
+                <View
+                    style="@style/SplitLine"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="14dp"
+                        android:text="秒下款产品"
+                        android:textColor="@color/colorDarkGray"
+                        android:textSize="16sp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="2dp">
+
+                        <View
+                            style="@style/SplitLine"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="80dp"
+                            android:layout_marginStart="80dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:background="@android:color/white"
+                            android:paddingEnd="8dp"
+                            android:paddingStart="8dp"
+                            android:text="同时申请4家以上,下款率达90%"
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="12sp" />
+
+                    </FrameLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_loan_platform"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:background="#fff" />
+                </LinearLayout>
+
+                <View style="@style/SplitLine" />
+
+                <View
+                    style="@style/SplitLine"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="14dp"
+                        android:paddingStart="14dp"
+                        android:paddingTop="8dp"
+                        android:text="热门借款"
+                        android:textColor="@color/colorDarkGray"
+                        android:textSize="16sp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <View style="@style/SplitLine" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_loan_hot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.xygj.app.jinrirong.widget.CustomScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_title_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:background="@color/colorPrimary"
+        android:paddingTop="@dimen/status_bar_size">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="14dp"
+            android:textSize="@dimen/font_title_size" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/status_bar_size">
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="14dp"
+            android:visibility="invisible"
+            android:text="首页"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_title_size" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp">
+
+            <ImageView
+                android:id="@+id/iv_msg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="7dp"
+                android:src="@mipmap/ic_msg" />
+
+            <View
+                android:id="@+id/view_new_msg"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_dot_msg"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

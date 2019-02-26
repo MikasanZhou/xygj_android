@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5461eb</color>
+    <color name="colorOrange">#ff8629</color>
+    <color name="colorPrimaryDark">#4f5bdc</color>
+    <color name="colorHalfTransparentWhite">#a0ffffff</color>
+    <color name="colorAccent">#4f5bdc</color>
+    <color name="colorTheme">#FF6600</color>
+    <color name="colorDarkGray">#333333</color>
+    <color name="colorLightGray">#777777</color>
+    <color name="colorSplitLine">#DEDEDE</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorMainBg">#f9f9f9</color>
+</resources>

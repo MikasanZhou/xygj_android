@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".jinrirong.activity.MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.xygj.app.common.widget.NoScrollViewPager
+            android:id="@+id/vp_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_get_money"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_gravity="bottom|end"
+            android:visibility="gone"
+            android:layout_marginBottom="80dp"
+            android:src="@mipmap/ic_bad_guy" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.6"
+        android:background="@color/colorSplitLine" />
+
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_0"
+            style="@style/RadioGroupTab"
+            android:drawableTop="@drawable/sel_ic_home"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/rb_1"
+            style="@style/RadioGroupTab"
+            android:drawableTop="@drawable/sel_ic_loan"
+            android:text="借贷" />
+
+        <RadioButton
+            android:id="@+id/rb_2"
+            style="@style/RadioGroupTab"
+            android:drawableTop="@drawable/sel_ic_promote"
+            android:text="推广" />
+
+        <RadioButton
+            android:id="@+id/rb_3"
+            style="@style/RadioGroupTab"
+            android:drawableTop="@drawable/sel_ic_mine"
+            android:text="我的" />
+    </RadioGroup>
+
+</LinearLayout>
