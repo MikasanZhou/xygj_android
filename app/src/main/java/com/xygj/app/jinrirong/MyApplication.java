@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.facebook.stetho.Stetho;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.xygj.app.BuildConfig;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
@@ -14,7 +16,8 @@ import com.umeng.socialize.PlatformConfig;
 
 public class MyApplication extends Application {
     private static Context mApplicationContext;
-
+    // APP_ID 替换为你的应用从官方网站申请到的合法appID
+    private static final String APP_ID = "wx88888888";
     static {
         // todo 分享配置
         // 配置第三方分享的appKey
@@ -23,9 +26,16 @@ public class MyApplication extends Application {
         PlatformConfig.setQQZone("1108079678", "rMUXoannDAVOcpLa");
     }
 
+    private IWXAPI api;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+
+        // 将应用的appId注册到微信
+        api.registerApp(APP_ID);
         mApplicationContext = this;
         UMConfigure.init(this,"5c3f18e1b465f532c2000a87","",UMConfigure.DEVICE_TYPE_PHONE,"");
         UMConfigure.setLogEnabled(true);

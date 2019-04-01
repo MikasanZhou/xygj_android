@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_spread"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_spread_first">
+
+        <TextView
+            android:id="@+id/tv_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="小额速借"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tv_small_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_small"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
+            android:text="1000-5000"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/tv_small_num"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/icon_right_arrow" />
+
+        <ImageView
+            android:id="@+id/iv_spread"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_small_num"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/icon_money" />
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

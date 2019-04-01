@@ -32,6 +32,7 @@ import com.xygj.app.jinrirong.activity.presenter.MainPresenter;
 import com.xygj.app.jinrirong.activity.view.MainView;
 import com.xygj.app.jinrirong.common.MyWebViewActivity;
 import com.xygj.app.jinrirong.dialog.PicDialog;
+import com.xygj.app.jinrirong.fragment.home.HomeFragment;
 import com.xygj.app.jinrirong.fragment.home.HomePage1Fragment;
 import com.xygj.app.jinrirong.fragment.home.HomePage2Fragment;
 import com.xygj.app.jinrirong.fragment.home.HomePage3Fragment;
@@ -115,7 +116,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
      * 初始化tab 栏
      */
     private void initTabBar() {
-        mFragments.add(new HomePage1Fragment());
+        mFragments.add(new HomeFragment());
         mFragments.add(new HomePage2Fragment());
         mFragments.add(new HomePage3Fragment());
         mFragments.add(new HomePage4Fragment());

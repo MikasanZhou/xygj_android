@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorMainBg"
     tools:context="com.xygj.app.jinrirong.fragment.home.HomePage1Fragment">
 
@@ -63,11 +64,25 @@
                     style="@style/SplitLine"
                     android:layout_marginTop="10dp" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_loan_category"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#fff" />
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="#c4c6c8"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_loan_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff" />
+
+                </android.support.v7.widget.CardView>
+
+
 
                 <View style="@style/SplitLine" />
 

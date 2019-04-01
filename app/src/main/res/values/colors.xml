@@ -10,5 +10,6 @@
     <color name="colorLightGray">#777777</color>
     <color name="colorSplitLine">#DEDEDE</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="colorMainBg">#f9f9f9</color>
 </resources>

@@ -17,6 +17,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 
@@ -28,7 +32,7 @@ ext {
     android = [
             buildToolsVersion    : '26.0.2',
             compileSdkVersion    : 26,
-            minSdkVersion        : 16,
+            minSdkVersion        : 19,
             targetSdkVersion     : 26,
             versionCode          : 1,
             versionName          : "1.0",

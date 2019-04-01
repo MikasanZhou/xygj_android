@@ -41,6 +41,17 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/home',
+                            'src/main/res/layout/wxpay',
+                            'src/main/res'
+                    ]
+        }
+    }
+
 }
 
 dependencies {
@@ -84,4 +95,10 @@ dependencies {
     implementation files('libs/umeng-share-wechat-simplify-6.9.2.jar')
     implementation files('libs/umeng-shareboard-widget-6.9.2.jar')
     implementation files('libs/umeng-sharetool-6.9.2.jar')
+    implementation(name: 'BaseRecyclerViewAdapterHelper-2.9.46', ext: 'aar')
+    implementation 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'
 }
