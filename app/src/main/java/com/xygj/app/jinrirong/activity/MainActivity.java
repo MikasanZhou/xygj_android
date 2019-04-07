@@ -116,7 +116,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
      * 初始化tab 栏
      */
     private void initTabBar() {
-        mFragments.add(new HomeFragment());
+        mFragments.add(new HomePage1Fragment());
         mFragments.add(new HomePage2Fragment());
         mFragments.add(new HomePage3Fragment());
         mFragments.add(new HomePage4Fragment());
