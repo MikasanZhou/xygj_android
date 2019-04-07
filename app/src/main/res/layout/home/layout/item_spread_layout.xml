@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/rl_spread"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="110dp"
         android:background="@drawable/bg_spread_first">
 
         <TextView
@@ -31,13 +31,13 @@
 
         <ImageView
             android:id="@+id/iv_right"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_below="@+id/tv_small_num"
             android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="26dp"
             android:src="@mipmap/icon_right_arrow" />
 
         <ImageView
@@ -47,6 +47,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/tv_small_num"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/icon_money" />
     </RelativeLayout>

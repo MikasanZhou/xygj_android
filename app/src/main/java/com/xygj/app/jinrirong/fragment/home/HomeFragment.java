@@ -1,6 +1,7 @@
 package com.xygj.app.jinrirong.fragment.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,10 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xygj.app.R;
 import com.xygj.app.common.utils.DensityUtils;
+import com.xygj.app.jinrirong.activity.user.CreditDetail.CreditListActivity;
 import com.xygj.app.jinrirong.common.base.BaseMvpFragment;
 import com.xygj.app.jinrirong.config.UserManager;
 import com.xygj.app.jinrirong.fragment.adapter.SelectedExplosionAdapter;
@@ -84,7 +87,8 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         super.onViewCreated(view, savedInstanceState);
         activity = getActivity();
 
-
+        srRefresh.setNestedScrollingEnabled(false
+        );
         initSpreadAdapter();
 
         initSelectedExplosion();
@@ -94,7 +98,8 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         selectedList = new ArrayList<>();
         selectedExplosionAdapter = new SelectedExplosionAdapter(activity,R.layout.item_selected_applicaion_layout, selectedList);
         recyclerSelectedExplosions.setLayoutManager(new LinearLayoutManager(activity));
-        recyclerSelectedExplosions.addItemDecoration(new DividerItemDecoration(activity,DividerItemDecoration.VERTICAL));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
+        recyclerSelectedExplosions.addItemDecoration(dividerItemDecoration);
         selectAnimation = new AlphaAnimatorAdapter(selectedExplosionAdapter, recyclerSelectedExplosions);
         recyclerSelectedExplosions.setAdapter(selectAnimation);
     }
@@ -110,6 +115,13 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
         homeRecyclerView.addItemDecoration(new GridDividerItemDecoration(DensityUtils.dp2px(activity, 20), Color.TRANSPARENT));
         homeRecyclerView.setAdapter(animatorAdapter);
+        spreadAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                Intent intent = new Intent(activity, CreditListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

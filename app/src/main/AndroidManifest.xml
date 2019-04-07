@@ -146,8 +146,11 @@
         <activity android:name=".jinrirong.activity.user.HelpActivity" />
         <activity android:name=".jinrirong.activity.user.changejie.ChangJieCodeActivity" />
         <activity android:name=".jinrirong.activity.user.MoneyActivity" />
-        <activity android:name=".jinrirong.activity.user.CreditDetail.CreditDetailActivity"></activity>
-        <activity android:name="net.sourceforge.simcpux.WXPayEntryActivity" android:exported="true" />
+        <activity android:name=".jinrirong.activity.user.CreditDetail.CreditDetailActivity" />
+        <activity
+            android:name="net.sourceforge.simcpux.WXPayEntryActivity"
+            android:exported="true" />
+        <activity android:name=".jinrirong.activity.user.CreditDetail.CreditListActivity"></activity>
     </application>
 
 </manifest>
