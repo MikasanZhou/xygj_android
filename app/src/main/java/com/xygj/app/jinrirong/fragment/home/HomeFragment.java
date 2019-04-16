@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,13 +14,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xygj.app.R;
 import com.xygj.app.common.utils.DensityUtils;
+import com.xygj.app.jinrirong.activity.product.ProductDetailActivity;
 import com.xygj.app.jinrirong.activity.user.CreditDetail.CreditListActivity;
+import com.xygj.app.jinrirong.activity.user.LoginActivity;
 import com.xygj.app.jinrirong.common.base.BaseMvpFragment;
 import com.xygj.app.jinrirong.config.UserManager;
 import com.xygj.app.jinrirong.fragment.adapter.SelectedExplosionAdapter;
@@ -33,10 +36,12 @@ import com.xygj.app.jinrirong.model.HttpRespond;
 import com.xygj.app.jinrirong.model.LoanCateAndLocation;
 import com.xygj.app.jinrirong.model.LoanProduct;
 import com.xygj.app.jinrirong.model.NewMessageBean;
+import com.xygj.app.jinrirong.utils.CommonUtils;
 import com.xygj.app.jinrirong.widget.GridDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,12 +63,21 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         ClassicsHeader.REFRESH_HEADER_LASTTIME = "上次更新 M-d HH:mm";
         ClassicsHeader.REFRESH_HEADER_LASTTIME = "'Last update' M-d HH:mm";
     }
+
     @BindView(R.id.sr_refresh)
     SmartRefreshLayout srRefresh;
     @BindView(R.id.home_recycler_view)
     RecyclerView homeRecyclerView;
     @BindView(R.id.recycler_selected_explosions)
     RecyclerView recyclerSelectedExplosions;
+    @BindView(R.id.tv_balance)
+    TextView tvBalance;
+    @BindView(R.id.tv_apply_number)
+    TextView tvApplyNumber;
+    @BindView(R.id.tv_title_name)
+    TextView tvTitleName;
+    @BindView(R.id.card_view)
+    ConstraintLayout cardView;
     private SpreadAdapter spreadAdapter;
     private List<HomeBanner> bannersList;
     private List<LoanProduct> selectedList;
@@ -96,7 +110,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     private void initSelectedExplosion() {
         selectedList = new ArrayList<>();
-        selectedExplosionAdapter = new SelectedExplosionAdapter(activity,R.layout.item_selected_applicaion_layout, selectedList);
+        selectedExplosionAdapter = new SelectedExplosionAdapter(activity, R.layout.item_selected_applicaion_layout, selectedList);
         recyclerSelectedExplosions.setLayoutManager(new LinearLayoutManager(activity));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
         recyclerSelectedExplosions.addItemDecoration(dividerItemDecoration);
@@ -109,7 +123,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
      */
     private void initSpreadAdapter() {
         bannersList = new ArrayList<>();
-        spreadAdapter = new SpreadAdapter(activity,R.layout.item_spread_layout, bannersList);
+        spreadAdapter = new SpreadAdapter(activity, R.layout.item_spread_layout, bannersList);
         homeRecyclerView.setLayoutManager(new GridLayoutManager(activity, 3));
         animatorAdapter = new AlphaAnimatorAdapter(spreadAdapter, homeRecyclerView);
 
@@ -122,6 +136,8 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
                 startActivity(intent);
             }
         });
+
+
     }
 
     @Override
@@ -165,9 +181,43 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     @Override
     public void onGetHotLoanListSucceed(List<LoanProduct> data) {
-        selectedList.clear();
-        selectedList.addAll(data);
-        selectedExplosionAdapter.notifyDataSetChanged();
+        if (data != null && data.size() > 0) {
+            Random random = new Random();
+            int i = random.nextInt(data.size());
+            try {
+                LoanProduct loanProduct = data.get(i);
+                fillHotData(loanProduct);
+            } catch (Exception e) {
+
+            }
+            selectedList.clear();
+            selectedList.addAll(data);
+            selectedExplosionAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void fillHotData(final LoanProduct loanProduct) {
+        tvTitleName.setText(loanProduct.getName());
+        tvApplyNumber.setText(loanProduct.getAppNumbs() + "人已申请");
+        String typeName = loanProduct.getTypeName();
+        if (typeName.contains("-")) {
+            String[] split = typeName.split("-");
+            String amount = CommonUtils.addComma(split[1]);
+            tvBalance.setText(amount);
+        }else {
+            tvBalance.setText(typeName);
+        }
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UserManager.getInstance().isLogin()) {
+                    startActivity(ProductDetailActivity.getIntent(getActivity(), loanProduct.getID()));
+                } else {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
+            }
+        });
     }
 
     @Override

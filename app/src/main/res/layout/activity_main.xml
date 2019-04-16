@@ -55,6 +55,7 @@
         <RadioButton
             android:id="@+id/rb_2"
             style="@style/RadioGroupTab"
+            android:visibility="gone"
             android:drawableTop="@drawable/sel_ic_promote"
             android:text="推广" />
 

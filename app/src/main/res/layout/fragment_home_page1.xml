@@ -75,6 +75,7 @@
 
                 <View
                     style="@style/SplitLine"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -87,6 +88,7 @@
 
                 <View
                     style="@style/SplitLine"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp" />
 
                 <LinearLayout

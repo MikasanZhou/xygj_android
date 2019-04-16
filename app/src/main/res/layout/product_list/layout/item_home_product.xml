@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:id="@+id/rl_item_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="6dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:riv_corner_radius="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/avatar" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"                android:layout_centerVertical="true"
+
+
+            android:layout_toEndOf="@+id/iv_logo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:text="小豬贷"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/iv_logo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_apply_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_logo"
+                android:layout_alignStart="@+id/linearLayout"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="3425人已申请"
+                android:textColor="#A5A5A7"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_application" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:paddingTop="4dp">
+
+            <TextView
+                android:id="@+id/tv_application"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/bg_application"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingEnd="12dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="4dp"
+                android:text="立即申请"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteY="32dp" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_item_top"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_application_conditions"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:id="@+id/tv_amount_limit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ok_2"
+                android:text="借款额度:"
+                android:textColor="#A5A5A7"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="118dp" />
+
+            <TextView
+                android:id="@+id/tv_amount_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@id/tv_amount_limit_title"
+                android:text="1k-5k"
+                android:textColor="#A5A5A7"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="118dp" />
+
+            <TextView
+                android:id="@+id/tv_fei_lv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40dp"
+                android:layout_toRightOf="@id/ok_2"
+                android:text="日费率：0.03%"
+                android:textColor="#A5A5A7"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="118dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ok_2"
+                android:text="可借期限:"
+                android:textColor="#A5A5A7"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="118dp" />
+
+            <TextView
+                android:id="@+id/tv_time_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="40dp"
+                android:layout_toRightOf="@id/ok_2"
+                android:text="1年"
+                android:textColor="#A5A5A7"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ok_2"
+                android:text="借款简介:"
+                android:textColor="#A5A5A7"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="118dp" />
+
+            <TextView
+                android:id="@+id/tv_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+
+                android:layout_marginRight="40dp"
+                android:layout_toRightOf="@id/ok_2"
+                android:text="大公司合规背景"
+                android:textColor="#A5A5A7"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

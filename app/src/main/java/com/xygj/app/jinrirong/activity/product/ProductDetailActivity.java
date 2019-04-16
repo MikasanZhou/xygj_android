@@ -158,22 +158,22 @@ public class ProductDetailActivity extends BaseMvpActivity<ProductDetailView, Pr
     @Override
     public void onNetworkConnectFailed() {
         hideLoadingDialog();
-        new CustomDialog.Builder(this)
-                .setTitle("哎呀，连接失败")
-                .setContent("是否尝试重新连接？")
-                .setListener(new CustomDialog.OnButtonClickListener() {
-                    @Override
-                    public void onConfirm(Dialog dialog) {
-                        dialog.dismiss();
-                        getDataFromServer();
-                    }
-
-                    @Override
-                    public void onCancel(Dialog dialog) {
-                        dialog.dismiss();
-                        finish();
-                    }
-                }).build().show();
+//        new CustomDialog.Builder(this)
+//                .setTitle("哎呀，连接失败")
+//                .setContent("是否尝试重新连接？")
+//                .setListener(new CustomDialog.OnButtonClickListener() {
+//                    @Override
+//                    public void onConfirm(Dialog dialog) {
+//                        dialog.dismiss();
+//                        getDataFromServer();
+//                    }
+//
+//                    @Override
+//                    public void onCancel(Dialog dialog) {
+//                        dialog.dismiss();
+//                        finish();
+//                    }
+//                }).build().show();
     }
 
     @Override

@@ -35,7 +35,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 Log.e(TAG, "localKey: " + key);
                 addTask(RetrofitHelper.getInstance().getService().login(
                         Constants.CLIENT, Constants.PACKAGE, Constants.VER, phone,
-                        token, timeStampBeanHttpRespond.data.id, timeStampBeanHttpRespond.data.val, UserManager.getInstance().getDeviceToken()), new Consumer<HttpRespond<LoginData>>() {
+                        token, timeStampBeanHttpRespond.data.id, timeStampBeanHttpRespond.data.val,
+                        UserManager.getInstance().getDeviceToken(),psw,Constants.LOGIN_TYPE), new Consumer<HttpRespond<LoginData>>() {
                     @Override
                     public void accept(HttpRespond<LoginData> respond) throws Exception {
                         if (respond.result == 1) {
@@ -49,6 +50,32 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                         getView().hideLoadingView();
                     }
                 });
+            }
+        });
+    }
+
+    public void getSmsCode(String phoneNum, String captcha) {
+        mView.showLoadingView();
+        addTask(RetrofitHelper.getInstance().getService().getSmsCode(
+                Constants.CLIENT, Constants.VER, Constants.PACKAGE, phoneNum, 2, captcha
+        ), new Consumer<HttpRespond>() {
+            @Override
+            public void accept(HttpRespond httpRespond) throws Exception {
+                mView.hideLoadingView();
+                mView.onSendSmsComplete(httpRespond);
+            }
+        });
+    }
+
+    public void getSmsNoCode(String phoneNum) {
+        mView.showLoadingView();
+        addTask(RetrofitHelper.getInstance().getService().getSmsNoCode(
+                Constants.CLIENT, Constants.VER, Constants.PACKAGE, phoneNum, 2
+        ), new Consumer<HttpRespond>() {
+            @Override
+            public void accept(HttpRespond httpRespond) throws Exception {
+                mView.hideLoadingView();
+                mView.onSendSmsComplete(httpRespond);
             }
         });
     }

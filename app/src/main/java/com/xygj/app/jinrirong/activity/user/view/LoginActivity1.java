@@ -1,4 +1,4 @@
-package com.xygj.app.jinrirong.activity.user;
+package com.xygj.app.jinrirong.activity.user.view;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,8 +13,9 @@ import com.xygj.app.common.base.BaseMvpActivity;
 import com.xygj.app.common.utils.SPUtils;
 import com.xygj.app.common.utils.ToastUtils;
 import com.xygj.app.common.widget.CountDownTextView;
+import com.xygj.app.jinrirong.activity.user.ForgetPwdActivity;
+import com.xygj.app.jinrirong.activity.user.RegisterActivity;
 import com.xygj.app.jinrirong.activity.user.presenter.LoginPresenter;
-import com.xygj.app.jinrirong.activity.user.view.LoginView;
 import com.xygj.app.jinrirong.config.UserManager;
 import com.xygj.app.jinrirong.model.HttpRespond;
 import com.xygj.app.jinrirong.model.LoginData;
@@ -23,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> implements LoginView {
+public class LoginActivity1 extends BaseMvpActivity<LoginView, LoginPresenter> implements LoginView {
     @BindView(R.id.et_phone)
     EditText etPhone;
     @BindView(R.id.et_psw)
@@ -32,8 +33,6 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     Button btnLogin;
     @BindView(R.id.cdt_countdown)
     CountDownTextView cdtCountdown;
-    @BindView(R.id.et_sms_code)
-    EditText etSmsCode;
 
     @Override
     protected int setContentLayoutRes() {
@@ -67,10 +66,10 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
 
     @OnClick(R.id.btn_login)
     public void login() {
-        if (TextUtils.isEmpty(etPhone.getText()) || TextUtils.isEmpty(etSmsCode.getText())) {
+        if (TextUtils.isEmpty(etPhone.getText()) || TextUtils.isEmpty(etPsw.getText())) {
             ToastUtils.showShort(this, "手机号和验证码不能为空");
         } else
-            mPresenter.doLogin(etPhone.getText().toString(), etSmsCode.getText().toString());
+            mPresenter.doLogin(etPhone.getText().toString(), etPsw.getText().toString());
     }
 
     /**

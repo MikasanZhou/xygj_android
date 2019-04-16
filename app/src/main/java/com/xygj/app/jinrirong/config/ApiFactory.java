@@ -12,6 +12,8 @@ public class ApiFactory {
 
     public static final String GET_SMS = "core/tool/getcode";
 
+    public static final String GET_SMS_NO_CODE = "core/tool/getcodeWithNoCode";
+
     public static final String REGISTER = "center/Register/reg";
 
     public static final String LOGIN = "center/member/login";

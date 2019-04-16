@@ -7,6 +7,5 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_single_choose"
         android:layout_width="match_parent"
-        android:minHeight="100dp"
         android:layout_height="wrap_content" />
 </LinearLayout>

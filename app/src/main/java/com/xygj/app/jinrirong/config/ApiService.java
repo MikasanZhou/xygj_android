@@ -40,6 +40,7 @@ import com.xygj.app.jinrirong.model.credit_card.BankType;
 import com.xygj.app.jinrirong.model.credit_card.CardType;
 import com.xygj.app.jinrirong.model.credit_card.MoneyType;
 import com.xygj.app.jinrirong.model.credit_card.YearFeeType;
+
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -66,6 +67,14 @@ public interface ApiService {
             @Query("Mobile") String phoneNum,
             @Query("type") int type,
             @Query("code") String code);
+
+    @GET(ApiFactory.GET_SMS_NO_CODE)
+    Observable<HttpRespond> getSmsNoCode(
+            @Query("client") String client,
+            @Query("ver") String ver,
+            @Query("package") String packageName,
+            @Query("Mobile") String phoneNum,
+            @Query("type") int type);
 
     @POST(ApiFactory.REGISTER)
     Observable<HttpRespond> register(@Body RequestBody requestBody);
@@ -224,7 +233,9 @@ public interface ApiService {
             @Query("token") String token,
             @Query("ticksid") String tickId,
             @Query("ticks") String ticks,
-            @Query("DeviceToken") String deviceToken);
+            @Query("DeviceToken") String deviceToken,
+            @Query("code") String code,
+            @Query("loginType") String loginType);
 
     @GET(ApiFactory.GET_TIMESTAMP)
     Observable<HttpRespond<TimeStampBean>> getTime(

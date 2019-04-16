@@ -7,6 +7,7 @@ public class Constants {
     public static final String CLIENT = "android";
     public static final String PACKAGE = "com.xygj.app";
     public static final String VER = "1.0.0";
+    public static final String LOGIN_TYPE = "new";
 
     public static final int ABOUT_US = 1;
     public static final int PRODUCT_DES = 2;

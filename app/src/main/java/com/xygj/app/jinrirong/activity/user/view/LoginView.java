@@ -15,4 +15,6 @@ public interface LoginView extends BaseView {
 
     void onLoginComplete(HttpRespond<LoginData> respond);
     void onLoginFailed(HttpRespond<LoginData> respond);
+
+    void onSendSmsComplete(HttpRespond respond);
 }

@@ -133,7 +133,7 @@ public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> 
         });
 
         mRvCreditCardCategory.setAdapter(new CreditCardCategoryAdapter());
-        mRvCreditCardCategory.setLayoutManager(new GridLayoutManager(getActivity(), 2) {
+        mRvCreditCardCategory.setLayoutManager(new GridLayoutManager(getActivity(), 1) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -231,7 +231,8 @@ public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> 
     @Override
     public void onGetLoanCategorySucceed(LoanCateAndLocation data) {
         mSrRefresh.setRefreshing(false);
-
+        //不显示贷款类型
+        data.list.clear();
         mRvLoanCategory.setAdapter(new LoanCategoryAdapter(getActivity(), data.list));
         mRvLoanCategory.setLayoutManager(new GridLayoutManager(getActivity(), 4) {
             @Override
@@ -456,9 +457,12 @@ public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> 
 
     private class CreditCardCategoryAdapter extends RecyclerView.Adapter<CreditCardCategoryAdapter.Holder> {
 
-        String titles[] = new String[]{"贷款大全", "办信用卡", "我要赚钱", "黑名单查询"};
-        String subTitles[] = new String[]{"汇集各类网贷", "下卡快额度高", "邀请朋友赚钱", "老被拒?看是否黑了"};
-        private int[] icons = new int[]{R.mipmap.home_loan, R.mipmap.home_card, R.mipmap.home_community, R.mipmap.home_credit};
+//        String titles[] = new String[]{"贷款大全", "办信用卡", "我要赚钱", "黑名单查询"};
+//        String subTitles[] = new String[]{"汇集各类网贷", "下卡快额度高", "邀请朋友赚钱", "老被拒?看是否黑了"};
+//        private int[] icons = new int[]{R.mipmap.home_loan, R.mipmap.home_card, R.mipmap.home_community, R.mipmap.home_credit};
+        String titles[] = new String[]{ };
+        String subTitles[] = new String[]{ };
+        private int[] icons = new int[]{ };
 
         @NonNull
         @Override
@@ -487,9 +491,14 @@ public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> 
                     switch (holder.getAdapterPosition()) {
                         //贷款大全
                         case 0:
-                            if (getActivity() != null) {
-                                ((MainActivity) getActivity()).checkMoudle(1);
+//                            if (getActivity() != null) {
+//                                ((MainActivity) getActivity()).checkMoudle(1);
+//                            }
+                            if (!UserManager.getInstance().isLogin()) {
+                                startActivity(new Intent(getActivity(), LoginActivity.class));
+                                return;
                             }
+                            startActivity(new Intent(getActivity(), QueryCreditActivity.class));
                             break;
                         //办信用卡
                         case 1:

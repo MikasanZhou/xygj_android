@@ -37,6 +37,7 @@ import com.xygj.app.jinrirong.fragment.home.HomePage1Fragment;
 import com.xygj.app.jinrirong.fragment.home.HomePage2Fragment;
 import com.xygj.app.jinrirong.fragment.home.HomePage3Fragment;
 import com.xygj.app.jinrirong.fragment.home.HomePage4Fragment;
+import com.xygj.app.jinrirong.fragment.home.ProductFragment;
 import com.xygj.app.jinrirong.model.HttpRespond;
 import com.xygj.app.jinrirong.model.PopBean;
 import com.xygj.app.jinrirong.model.UpdateBean;
@@ -116,9 +117,9 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
      * 初始化tab 栏
      */
     private void initTabBar() {
-        mFragments.add(new HomePage1Fragment());
-        mFragments.add(new HomePage2Fragment());
-        mFragments.add(new HomePage3Fragment());
+        mFragments.add(new HomeFragment());
+        mFragments.add(new ProductFragment());
+//        mFragments.add(new HomePage3Fragment());
         mFragments.add(new HomePage4Fragment());
         mVpFragment.setAdapter(new UniFragmentPagerAdapter(getSupportFragmentManager(), mFragments));
         mRgTab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
