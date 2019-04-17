@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
     android:layout_marginEnd="4dp"
     android:layout_marginStart="4dp"
     android:layout_marginTop="4dp"
+    android:layout_gravity="center_vertical"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_condition_item"
+        android:drawablePadding="4dp"
         android:gravity="center"
+        android:drawableStart="@drawable/ic_circle_gray"
+        android:layout_toRightOf="@+id/ok_1"
+        android:layout_centerVertical="true"
         android:paddingBottom="6dp"
         android:paddingTop="6dp"
         android:textSize="12sp"
         android:text="选项" />
-</LinearLayout>
+</RelativeLayout>

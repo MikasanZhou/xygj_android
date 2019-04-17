@@ -2,7 +2,6 @@ package com.xygj.app.jinrirong.fragment.home;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -10,7 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,21 +21,18 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xygj.app.R;
 import com.xygj.app.common.utils.ScreenUtils;
 import com.xygj.app.jinrirong.activity.MainActivity;
-import com.xygj.app.jinrirong.activity.product.ProductDetailActivity;
-import com.xygj.app.jinrirong.activity.user.LoginActivity;
-import com.xygj.app.jinrirong.adpter.LoanAdapter;
 import com.xygj.app.jinrirong.adpter.SingleChooseAdapter;
 import com.xygj.app.jinrirong.adpter.SingleChooseAdapter2;
 import com.xygj.app.jinrirong.adpter.home.ProductListAdapter;
 import com.xygj.app.jinrirong.common.base.BaseMvpFragment;
-import com.xygj.app.jinrirong.config.UserManager;
 import com.xygj.app.jinrirong.fragment.home.presenter.DiscoverLoanPresenter;
 import com.xygj.app.jinrirong.fragment.home.view.DiscoverLoanView;
 import com.xygj.app.jinrirong.model.IHaveInfo;
@@ -55,19 +51,29 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverLoanPresenter> implements DiscoverLoanView, OnLoadmoreListener {
+    static {
+        ClassicsHeader.REFRESH_HEADER_PULLDOWN = "下拉可以刷新";
+        ClassicsHeader.REFRESH_HEADER_REFRESHING = "正在刷新...";
+        ClassicsHeader.REFRESH_HEADER_LOADING = "正在加载...";
+        ClassicsHeader.REFRESH_HEADER_RELEASE = "释放立即刷新";
+        ClassicsHeader.REFRESH_HEADER_FINISH = "刷新完成";
+        ClassicsHeader.REFRESH_HEADER_FAILED = "刷新失败";
+        ClassicsHeader.REFRESH_HEADER_LASTTIME = "上次更新 M-d HH:mm";
+        ClassicsHeader.REFRESH_HEADER_LASTTIME = "'Last update' M-d HH:mm";
+    }
+
     private List<MoneyInfo> termList;
     private SingleChooseAdapter2 singleChooseAdapter2;
 //    LoanAdapter mLoanAdapter;
+
 
     public ProductFragment() {
     }
 
     @BindView(R.id.rv_product)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refresh_layout)
-    SmartRefreshLayout refreshLayout;
     @BindView(R.id.sr_refresh)
-    SwipeRefreshLayout mRefreshLayout;
+    SmartRefreshLayout mRefreshLayout;
     private ProductListAdapter productListAdapter;
 
     @Override
@@ -81,17 +87,20 @@ public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        productListAdapter = new ProductListAdapter(R.layout.item_home_product,mLoanProductList);
+        productListAdapter = new ProductListAdapter(R.layout.item_home_product, mLoanProductList);
 
 //        mLoanAdapter = new LoanAdapter(getActivity(), mLoanProductList);
         mRecyclerView.setAdapter(productListAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.bg_product_divider));
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-        refreshLayout.setEnableRefresh(false);
-        refreshLayout.setOnLoadmoreListener(this);
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mRefreshLayout.setOnLoadmoreListener(this);
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onRefresh() {
+            public void onRefresh(RefreshLayout refreshlayout) {
                 getDataFromServer();
+
             }
         });
     }
@@ -274,9 +283,8 @@ public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverL
 
     @Override
     public void onGetMoneyTypeListSucceed(List<MoneyInfo> moneyInfoList) {
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.finishRefresh();
         mMoneyInfoList = moneyInfoList;
-        mRefreshLayout.setRefreshing(false);
         if (mPwChooseMoney == null) {
             List<String> stringList = new ArrayList<>();
 
@@ -297,7 +305,7 @@ public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverL
     }
 
     private void researchData() {
-        mRefreshLayout.setRefreshing(true);
+        mRefreshLayout.autoRefresh();
         getPresenter().getLoanList(termId, tid, cid, nids, page, rows);
     }
 
@@ -305,7 +313,7 @@ public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverL
 
     @Override
     public void onGetIHaveTypeListSucceed(List<IHaveInfo> iHaveInfoList) {
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.finishRefresh();
         mIHaveInfoList = iHaveInfoList;
     }
 
@@ -314,14 +322,14 @@ public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverL
 
     @Override
     public void onGetNeedListSucceed(List<NeedInfo> needInfoList) {
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.finishRefresh();
         //mNeedInfoList = needInfoList;
     }
 
     @Override
     public void onGetLoanListSucceed(List<LoanProduct> loanProductList) {
-        mRefreshLayout.setRefreshing(false);
-        refreshLayout.finishLoadmore();
+        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishLoadmore();
         if (page == 0)
             mLoanProductList.clear();
         mLoanProductList.addAll(loanProductList);
@@ -330,8 +338,8 @@ public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverL
 
     @Override
     public void onGetLoanListFailed(String message) {
-        refreshLayout.finishLoadmore();
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.finishLoadmore();
+        mRefreshLayout.finishRefresh();
         if (page == 0)
             mLoanProductList.clear();
         productListAdapter.notifyDataSetChanged();
@@ -340,9 +348,8 @@ public class ProductFragment extends BaseMvpFragment<DiscoverLoanView, DiscoverL
 
     @Override
     public void onGetTermListSucceed(List<MoneyInfo> data) {
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.finishRefresh();
         termList = data;
-        mRefreshLayout.setRefreshing(false);
         if (mPwChooseTerm == null) {
             List<String> stringList = new ArrayList<>();
             stringList.add("期限不限");

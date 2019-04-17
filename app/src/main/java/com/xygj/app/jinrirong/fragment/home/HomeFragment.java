@@ -21,7 +21,8 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xygj.app.R;
 import com.xygj.app.common.utils.DensityUtils;
-import com.xygj.app.jinrirong.activity.product.ProductDetailActivity;
+import com.xygj.app.common.utils.SPUtils;
+import com.xygj.app.jinrirong.activity.product.ProductDetail2Activity;
 import com.xygj.app.jinrirong.activity.user.CreditDetail.CreditListActivity;
 import com.xygj.app.jinrirong.activity.user.LoginActivity;
 import com.xygj.app.jinrirong.common.base.BaseMvpFragment;
@@ -113,6 +114,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         selectedExplosionAdapter = new SelectedExplosionAdapter(activity, R.layout.item_selected_applicaion_layout, selectedList);
         recyclerSelectedExplosions.setLayoutManager(new LinearLayoutManager(activity));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.bg_product_divider));
         recyclerSelectedExplosions.addItemDecoration(dividerItemDecoration);
         selectAnimation = new AlphaAnimatorAdapter(selectedExplosionAdapter, recyclerSelectedExplosions);
         recyclerSelectedExplosions.setAdapter(selectAnimation);
@@ -181,6 +183,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     @Override
     public void onGetHotLoanListSucceed(List<LoanProduct> data) {
+
         if (data != null && data.size() > 0) {
             Random random = new Random();
             int i = random.nextInt(data.size());
@@ -188,7 +191,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
                 LoanProduct loanProduct = data.get(i);
                 fillHotData(loanProduct);
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
             selectedList.clear();
             selectedList.addAll(data);
@@ -204,7 +207,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
             String[] split = typeName.split("-");
             String amount = CommonUtils.addComma(split[1]);
             tvBalance.setText(amount);
-        }else {
+        } else {
             tvBalance.setText(typeName);
         }
 
@@ -212,7 +215,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
             @Override
             public void onClick(View v) {
                 if (UserManager.getInstance().isLogin()) {
-                    startActivity(ProductDetailActivity.getIntent(getActivity(), loanProduct.getID()));
+                    startActivity(ProductDetail2Activity.getIntent(getActivity(), loanProduct.getID()));
                 } else {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }

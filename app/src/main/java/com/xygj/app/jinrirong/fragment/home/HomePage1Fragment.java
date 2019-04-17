@@ -23,19 +23,11 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.xygj.app.R;
 import com.xygj.app.common.utils.LogUtil;
 import com.xygj.app.jinrirong.activity.MainActivity;
 import com.xygj.app.jinrirong.activity.product.CreditCardCenterActivity;
-import com.xygj.app.jinrirong.activity.product.ProductDetailActivity;
+import com.xygj.app.jinrirong.activity.product.ProductDetail2Activity;
 import com.xygj.app.jinrirong.activity.user.CommonNewsActivity;
 import com.xygj.app.jinrirong.activity.user.LoginActivity;
 import com.xygj.app.jinrirong.activity.user.MyMessageActivity;
@@ -56,6 +48,14 @@ import com.xygj.app.jinrirong.model.LoanProduct;
 import com.xygj.app.jinrirong.model.NewMessageBean;
 import com.xygj.app.jinrirong.widget.CustomScrollView;
 import com.xygj.app.jinrirong.widget.LooperTextView;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView {
     @BindView(R.id.tv_city)
@@ -419,7 +419,7 @@ public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(ProductDetailActivity.getIntent(mContext, product.getID()));
+                    mContext.startActivity(ProductDetail2Activity.getIntent(mContext, product.getID()));
                 }
             });
         }
@@ -457,12 +457,12 @@ public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> 
 
     private class CreditCardCategoryAdapter extends RecyclerView.Adapter<CreditCardCategoryAdapter.Holder> {
 
-//        String titles[] = new String[]{"贷款大全", "办信用卡", "我要赚钱", "黑名单查询"};
+        //        String titles[] = new String[]{"贷款大全", "办信用卡", "我要赚钱", "黑名单查询"};
 //        String subTitles[] = new String[]{"汇集各类网贷", "下卡快额度高", "邀请朋友赚钱", "老被拒?看是否黑了"};
 //        private int[] icons = new int[]{R.mipmap.home_loan, R.mipmap.home_card, R.mipmap.home_community, R.mipmap.home_credit};
-        String titles[] = new String[]{ };
-        String subTitles[] = new String[]{ };
-        private int[] icons = new int[]{ };
+        String titles[] = new String[]{};
+        String subTitles[] = new String[]{};
+        private int[] icons = new int[]{};
 
         @NonNull
         @Override

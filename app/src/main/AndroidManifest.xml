@@ -172,6 +172,7 @@
         <activity android:name=".jinrirong.activity.user.MoneyActivity" />
         <activity android:name=".jinrirong.activity.user.CreditDetail.CreditDetailActivity" />
         <activity android:name=".jinrirong.activity.user.view.LoginActivity1" />
+        <activity android:name=".jinrirong.activity.product.ProductDetail2Activity" />
     </application>
 
 </manifest>

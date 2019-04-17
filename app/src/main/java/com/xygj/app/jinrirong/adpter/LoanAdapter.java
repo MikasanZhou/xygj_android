@@ -12,15 +12,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-
-import java.text.DecimalFormat;
-import java.util.List;
-
 import com.xygj.app.R;
-import com.xygj.app.jinrirong.activity.product.ProductDetailActivity;
+import com.xygj.app.jinrirong.activity.product.ProductDetail2Activity;
 import com.xygj.app.jinrirong.activity.user.LoginActivity;
 import com.xygj.app.jinrirong.config.UserManager;
 import com.xygj.app.jinrirong.model.LoanProduct;
+
+import java.text.DecimalFormat;
+import java.util.List;
 
 public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
 
@@ -73,7 +72,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 if (UserManager.getInstance().isLogin()) {
-                    mContext.startActivity(ProductDetailActivity.getIntent(mContext, product.getID()));
+                    mContext.startActivity(ProductDetail2Activity.getIntent(mContext, product.getID()));
                 } else {
                     mContext.startActivity(new Intent(mContext, LoginActivity.class));
                 }
