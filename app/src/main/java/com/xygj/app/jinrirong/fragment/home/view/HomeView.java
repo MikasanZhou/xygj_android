@@ -21,6 +21,7 @@ public interface HomeView extends BaseView {
     void onGetLoanCategorySucceed(LoanCateAndLocation data);
 
     void onGetRecommendLoanListSucceed(List<LoanProduct> data);
+    void onGetRecommendLoanListFiled();
 
     void onGetHotLoanListSucceed(List<LoanProduct> data);
 

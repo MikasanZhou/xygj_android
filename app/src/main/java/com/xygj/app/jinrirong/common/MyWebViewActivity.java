@@ -1,21 +1,29 @@
 package com.xygj.app.jinrirong.common;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.xygj.app.R;
+import com.xygj.app.common.utils.LogUtil;
+import com.xygj.app.common.widget.CustomDialog;
+import com.xygj.app.jinrirong.common.base.BaseActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,11 +32,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-
-import com.xygj.app.R;
-import com.xygj.app.common.utils.LogUtil;
-import com.xygj.app.common.widget.CustomDialog;
-import com.xygj.app.jinrirong.common.base.BaseActivity;
 
 import static android.content.Intent.ACTION_VIEW;
 import static android.content.Intent.EXTRA_TEXT;
@@ -101,9 +104,17 @@ public class MyWebViewActivity extends BaseActivity {
         mCurrentType = data.getIntExtra(EXTRA_TYPE, -1);
         mTvTitle.setText(TextUtils.isEmpty(mTitle) ? getResources().getString(R.string.app_name) : mTitle);
         //WebView 配置相关
-        mWebView.getSettings().setJavaScriptEnabled(true);
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        String ua = webSettings.getUserAgentString();
+        mWebView.getSettings().setUserAgentString(ua);
+        //开启这个以后，就可以访问了 mlgb
+        webSettings.setDomStorageEnabled(true); // 开启 DOM storage API 功能
+        webSettings.setDatabaseEnabled(true);   //开启 database storage API 功能
+        webSettings.setAppCacheEnabled(true);
 //        mWebView.addJavascriptInterface(new InJavaScriptLocalObj(), "java_obj");
-        mWebView.setWebViewClient(new MyWebViewClient());
+        MyWebViewClient myWebViewClient = new MyWebViewClient();
+        mWebView.setWebViewClient(myWebViewClient);
         mWebView.setDownloadListener(new DownloadListener() {
             @Override
             public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
@@ -112,6 +123,8 @@ public class MyWebViewActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
@@ -138,6 +151,21 @@ public class MyWebViewActivity extends BaseActivity {
 //            mWebView.loadData(mUrl, "text/html;charset=UTF-8", null);
             mWebView.loadDataWithBaseURL(null, getHtmlData(mUrl), "text/html;charset=UTF-8", null, null);
         }
+    }
+
+
+    /**
+     * 获取手机IMEI(需要“android.permission.READ_PHONE_STATE”权限)
+     *
+     * @return 手机IMEI
+     */
+    @SuppressLint("MissingPermission")
+    public String getIMEI(Context ctx) {
+        TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Activity.TELEPHONY_SERVICE);
+        if (tm != null) {
+            return tm.getDeviceId();
+        }
+        return null;
     }
 
     private String getHtmlData(String bodyHTML) {
@@ -222,6 +250,7 @@ public class MyWebViewActivity extends BaseActivity {
             if (mCurrentType == TYPE_BANK_CERT || mCurrentType == TYPE_MOBILE_CERT || mCurrentType == TYPE_BANK_PAYMENT) {
                 view.loadUrl("javascript:window.java_obj.getSource(document.getElementsByTagName('body')[0].innerHTML);");
             }
+
         }
     }
 

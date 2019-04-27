@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.android.tu.loadingdialog.LoadingDailog;
+
 /**
  * MVP Activity 基类
  * Created by xuyougen on 2018/4/11.
@@ -28,12 +30,16 @@ public abstract class BaseMvpActivity<V extends BaseView, P extends BasePresente
     }
 
     protected Dialog createProgressDialog() {
-        ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setTitle("请稍等");
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setIndeterminate(true);
-        return dialog;
+//        ProgressDialog dialog = new ProgressDialog(this);
+//        dialog.setTitle("请稍等");
+//        dialog.setCancelable(false);
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.setIndeterminate(true);
+        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(this)
+                .setMessage("加载中...")
+                .setCancelable(true)
+                .setCancelOutside(true);
+        return loadBuilder.create();
     }
 
     @Override

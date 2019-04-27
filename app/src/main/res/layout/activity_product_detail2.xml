@@ -37,16 +37,19 @@
                 android:textSize="18sp" />
         </FrameLayout>
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/sr_refresh"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#F5F5F5">
+            android:fitsSystemWindows="false"
+            android:overScrollMode="never">
 
-            <android.support.v4.widget.NestedScrollView
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/sr_refresh"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#F5F5F5"
+                app:srlEnableRefresh="false">
 
 
                 <RelativeLayout
@@ -448,13 +451,9 @@
                             android:background="@drawable/bg_application_conditions" />
 
                     </LinearLayout>
-
-
                 </RelativeLayout>
-
-            </android.support.v4.widget.NestedScrollView>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
 
     <RelativeLayout
@@ -468,10 +467,10 @@
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginStart="26dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bg_btn_login"
+            android:background="@drawable/bg_btn_apply_selector"
             android:elevation="3dp"
             android:text="立即申请"
             android:textColor="#fff"

@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,6 +17,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xygj.app.R;
 import com.xygj.app.common.base.BaseMvpActivity;
 import com.xygj.app.jinrirong.activity.product.presenter.ProductDetailPresenter;
@@ -35,6 +35,16 @@ import butterknife.OnClick;
 
 public class ProductDetail2Activity extends BaseMvpActivity<ProductDetailView, ProductDetailPresenter> implements ProductDetailView {
 
+    static {
+        ClassicsHeader.REFRESH_HEADER_PULLDOWN = "下拉可以刷新";
+        ClassicsHeader.REFRESH_HEADER_REFRESHING = "正在刷新...";
+        ClassicsHeader.REFRESH_HEADER_LOADING = "正在加载...";
+        ClassicsHeader.REFRESH_HEADER_RELEASE = "释放立即刷新";
+        ClassicsHeader.REFRESH_HEADER_FINISH = "刷新完成";
+        ClassicsHeader.REFRESH_HEADER_FAILED = "刷新失败";
+        ClassicsHeader.REFRESH_HEADER_LASTTIME = "上次更新 M-d HH:mm";
+        ClassicsHeader.REFRESH_HEADER_LASTTIME = "'Last update' M-d HH:mm";
+    }
 
     private static String EXTRA_PRODUCT_ID = "extra_id";
     @BindView(R.id.rv_condition)
@@ -60,7 +70,7 @@ public class ProductDetail2Activity extends BaseMvpActivity<ProductDetailView, P
     @BindView(R.id.tv_desc)
     TextView mTvDesc;
     @BindView(R.id.sr_refresh)
-    SwipeRefreshLayout mRefreshLayout;
+    SmartRefreshLayout mRefreshLayout;
 
     private LoanProduct mLoanProduct;
 
@@ -84,12 +94,6 @@ public class ProductDetail2Activity extends BaseMvpActivity<ProductDetailView, P
             Toast.makeText(this, "非法进入", Toast.LENGTH_SHORT).show();
             finish();
         }
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getDataFromServer();
-            }
-        });
     }
 
     @Override
@@ -106,6 +110,7 @@ public class ProductDetail2Activity extends BaseMvpActivity<ProductDetailView, P
     private void getDataFromServer() {
         mPresenter.getProductDetail(mProductId);
     }
+
     private void getFromServer() {
         mPresenter.productStatistics(mProductId);
     }
@@ -132,6 +137,7 @@ public class ProductDetail2Activity extends BaseMvpActivity<ProductDetailView, P
             startActivity(new Intent(this, LoginActivity.class));
         }
     }
+
 
     @Override
     protected void initData() {
@@ -176,7 +182,7 @@ public class ProductDetail2Activity extends BaseMvpActivity<ProductDetailView, P
 
     @Override
     public void onGetProductDetailSucceed(LoanProduct loanProduct) {
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.finishRefresh();
         mLoanProduct = loanProduct;
         mTvTitle.setText(loanProduct.getName());
         mTvDesc.setText(loanProduct.getIntro());

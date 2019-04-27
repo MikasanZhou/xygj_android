@@ -15,4 +15,7 @@ public class Constants {
     public static final int VERSION_INTRO = 4;
     public static final int REGISTER_PROTOCOL = 5;
     public static final int USER_PROTOCOL = 7;
+
+    public static final String BANNER_URL = "banner_url";
+    public static final String BANNER_NAME = "banner_name";
 }

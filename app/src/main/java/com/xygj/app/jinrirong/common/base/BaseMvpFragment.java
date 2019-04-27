@@ -3,6 +3,7 @@ package com.xygj.app.jinrirong.common.base;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 
+import com.android.tu.loadingdialog.LoadingDailog;
 import com.xygj.app.common.base.BaseLazyLoadFragment;
 import com.xygj.app.common.base.BasePresenter;
 import com.xygj.app.common.base.BaseView;
@@ -30,10 +31,15 @@ public abstract class BaseMvpFragment<V extends BaseView, P extends BasePresente
     }
 
     protected Dialog createProgressDialog() {
-        ProgressDialog dialog = new ProgressDialog(getContext());
-        dialog.setTitle("请稍等");
-        dialog.setCancelable(false);
-        dialog.setIndeterminate(true);
+//        ProgressDialog dialog = new ProgressDialog(getContext());
+//        dialog.setTitle("请稍等");
+//        dialog.setCancelable(false);
+//        dialog.setIndeterminate(true);
+        LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(getContext())
+                .setMessage("加载中...")
+                .setCancelable(true)
+                .setCancelOutside(true);
+        LoadingDailog dialog=loadBuilder.create();
         return dialog;
     }
 

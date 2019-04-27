@@ -76,6 +76,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                     public void accept(HttpRespond<List<LoanProduct>> listHttpRespond) throws Exception {
                         if (listHttpRespond.result==1) {
                             getView().onGetRecommendLoanListSucceed(listHttpRespond.data);
+                        }else {
+                            getView().onGetRecommendLoanListFiled();
+
                         }
                     }
                 }

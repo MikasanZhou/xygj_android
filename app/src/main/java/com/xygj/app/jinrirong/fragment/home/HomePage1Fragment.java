@@ -257,6 +257,11 @@ public class HomePage1Fragment extends BaseMvpFragment<HomeView, HomePresenter> 
     }
 
     @Override
+    public void onGetRecommendLoanListFiled() {
+
+    }
+
+    @Override
     public void onGetHotLoanListSucceed(List<LoanProduct> data) {
         mSrRefresh.setRefreshing(false);
 
