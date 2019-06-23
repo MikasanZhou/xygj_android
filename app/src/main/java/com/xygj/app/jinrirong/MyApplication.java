@@ -2,10 +2,14 @@ package com.xygj.app.jinrirong;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.facebook.stetho.Stetho;
 import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.xygj.app.BuildConfig;
@@ -41,6 +45,12 @@ public class MyApplication extends Application {
 
         registerUMPush();
         Bugly.init(getApplicationContext(), "81461d0b1e", false);
+
+
+        MultiDex.install(this);
+        // 安装tinker
+        Beta.installTinker();
+
     }
 
     private void registerUMPush() {

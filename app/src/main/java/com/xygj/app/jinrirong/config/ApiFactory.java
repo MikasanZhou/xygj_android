@@ -26,7 +26,7 @@ public class ApiFactory {
     public static final String GET_POP = "home/home/tanimg";
 
     //获取  单页信息（关于我们，注册协议等）   页面
-    public static final String GET_HTML_TEXT = "Home/News/getpages";
+    public static final String GET_HTML_TEXT = " /News/getpages";
 
     //获取智能推荐网贷，热门网贷列表
     public static final String GET_HOME_ITEMS = "home/home/getitems";

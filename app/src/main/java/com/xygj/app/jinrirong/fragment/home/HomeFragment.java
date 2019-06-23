@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -41,6 +42,7 @@ import com.xygj.app.jinrirong.model.LoanProduct;
 import com.xygj.app.jinrirong.model.NewMessageBean;
 import com.xygj.app.jinrirong.utils.CommonUtils;
 import com.xygj.app.jinrirong.widget.GridDividerItemDecoration;
+import com.xygj.app.jinrirong.widget.LooperTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +84,10 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     ConstraintLayout cardView;
     @BindView(R.id.tv_bao_title)
     TextView tvBaoTitle;
+    @BindView(R.id.ltv_common_news)
+    LooperTextView ltvCommonNews;
+    @BindView(R.id.ll_common_news)
+    LinearLayout llCommonNews;
     private SpreadAdapter spreadAdapter;
     private List<HomeBanner> bannersList;
     private List<LoanProduct> selectedList;
@@ -185,6 +191,18 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     }
 
     @Override
+    public void onGetCommonNewsSucceed(List<CommonNews> commonNewsList) {
+        List<String> strings = new ArrayList<>();
+        for (CommonNews commonNews : commonNewsList) {
+            strings.add(commonNews.getTitle());
+        }
+        if (strings.size() > 0) {
+            llCommonNews.setVisibility(View.VISIBLE);
+            ltvCommonNews.setTipList(strings);
+        }
+    }
+
+    @Override
     public void onGetRecommendLoanListSucceed(List<LoanProduct> data) {
         if (data != null && data.size() > 0) {
             tvBaoTitle.setVisibility(View.VISIBLE);
@@ -235,10 +253,6 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         });
     }
 
-    @Override
-    public void onGetCommonNewsSucceed(List<CommonNews> commonNewsList) {
-
-    }
 
     @Override
     public void onNewMessage(HttpRespond<NewMessageBean> respond) {
@@ -275,4 +289,5 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         getPresenter().getHotLoanLoanList();
         getPresenter().getRecommendLoanList();
     }
+
 }

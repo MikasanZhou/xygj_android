@@ -32,12 +32,12 @@ public class SpreadAdapter extends BaseQuickAdapter<HomeBanner, BaseViewHolder> 
         baseViewHolder.setText(R.id.tv_small, homeBanner.getName());
         if (adapterPosition == 0) {
             roundImageView.setBackgroundResource(R.drawable.bg_spread_first);
-            baseViewHolder.setText(R.id.tv_small_num, "100-1000");
-        } else if (adapterPosition == 1) {
             baseViewHolder.setText(R.id.tv_small_num, "1000-3000");
+        } else if (adapterPosition == 1) {
+            baseViewHolder.setText(R.id.tv_small_num, "3000-10000");
             roundImageView.setBackgroundResource(R.drawable.bg_spread_second);
         } else {
-            baseViewHolder.setText(R.id.tv_small_num, "5000-10000");
+            baseViewHolder.setText(R.id.tv_small_num, "10000-50000");
             roundImageView.setBackgroundResource(R.drawable.bg_spread_thrid);
         }
     }

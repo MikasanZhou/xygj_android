@@ -222,7 +222,7 @@ public class ShareActivity extends BaseMvpActivity<ShareView, SharePresenter> im
                     @Override
                     public void onAction(List<String> permissions) {
                         UMWeb web = new UMWeb(shareBean.getShareUrl());
-                        web.setTitle("信用管家分享推广");
+                        web.setTitle("极速贷分享推广");
                         web.setDescription(" ");
                         web.setThumb(new UMImage(ShareActivity.this, getPosterBitmap()));
                         new ShareAction(ShareActivity.this).withMedia(web).setDisplayList(

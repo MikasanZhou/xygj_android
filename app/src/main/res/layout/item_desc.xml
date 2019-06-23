@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="自购买成功后可享受以信用管家代理资格为主的其他增值性服务"
+        android:text="自购买成功后可享受以极速贷代理资格为主的其他增值性服务"
         android:textSize="14sp" />
 
 </LinearLayout>
